@@ -14,6 +14,9 @@ class ApiClient {
 
   async fetchPosts(): Promise<IPost[]> {
     const response = await fetch(this.baseUrl);
+    if (!response.ok) {
+      throw new Error('Network error');
+    }
     return response.json();
   }
 
@@ -26,6 +29,9 @@ class ApiClient {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
+    if (!response.ok) {
+      throw new Error('Network error');
+    }
     return response.json();
   }
 
@@ -38,14 +44,21 @@ class ApiClient {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
+    if (!response.ok) {
+      throw new Error('Network error');
+    }
     return response.json();
   }
 
   // this api won't really delete the post
   async deletePost(postId: number): Promise<void> {
-    await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
       method: "DELETE",
     });
+    if (!response.ok) {
+      throw new Error('Network error');
+    }
+    return response.json();
   }
 
 }
