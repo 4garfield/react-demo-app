@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import ZustandCounter from './ZustandCounter.tsx'
+import InputForm from './InputForm.tsx';
 
 import {
   createBrowserRouter,
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
   {
     path:"/zustand",
     Component: ZustandCounter
-  }
+  },
+  {
+    path: "/input-form",
+    Component: InputForm,
+  },
 ]);
 
 createRoot(document.getElementById('root')!).render(
